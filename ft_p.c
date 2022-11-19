@@ -1,15 +1,43 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_p.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcherqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/19 21:11:11 by gcherqui          #+#    #+#             */
+/*   Updated: 2022/11/19 21:11:13 by gcherqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_p(unsigned long int a)
+#include "ft_printf.h"
+#include <stdio.h>
+
+int	ft_plen(unsigned long long x)
 {
-	int i;
-	char tab[16];
+	int	i;
 
 	i = 0;
+	while (x)
+	{
+		i++;
+		x = x / 16;
+	}
+	return (i);
+}
+
+int	ft_p(unsigned long long a)
+{
+	int		i;
+	char	tab[16];
+	int		size;
+
+	i = 0;
+	size = a;
 	if (a == 0)
 	{
 		write(1, "0x0", 3);
-		return (3);
+		return (i);
 	}
 	while (a)
 	{
@@ -18,6 +46,9 @@ int	ft_p(unsigned long int a)
 		i++;
 	}
 	write(1, "0x", 2);
-	ft_putstr(tab);
-	return(0);
+	i--;
+	while (i + 1)
+		write(1, &tab[i--], 1);
+	i += ft_plen(size);
+	return (i);
 }

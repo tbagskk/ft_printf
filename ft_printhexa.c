@@ -11,14 +11,33 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_printhexa(unsigned int a)
+int	ft_hexlen(unsigned int a)
+{
+	int	i ;
+
+	i = 0;
+	while (a != 0)
+	{
+		i++;
+		a = a / 16;
+	}
+	return (i);
+}
+
+int	ft_printhexa(unsigned int a, char b)
 {
 	char	*hexa;
 	int		tab[100];
+	int		size;
 	int		i;
 
-	hexa = "0123456789abcdef";
+	size = a;
+	if (b == 'x')
+		hexa = "0123456789abcdef";
+	if (b == 'X')
+		hexa = "0123456789ABCDEF";
 	i = 0;
 	while (a >= 16)
 	{
@@ -32,5 +51,5 @@ int	ft_printhexa(unsigned int a)
 		ft_putchar(tab[i]);
 		i--;
 	}
-	return (i);
+	return (ft_hexlen(size));
 }

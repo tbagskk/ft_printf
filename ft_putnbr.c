@@ -12,6 +12,24 @@
 
 #include "ft_printf.h"
 
+int	ft_nbrsize(int a)
+{
+	int	i;
+
+	i = 0;
+	if (a < 0)
+	{
+		a = -a;
+		i++;
+	}
+	while (a != 0)
+	{
+		i++;
+		a = a / 10;
+	}
+	return (i);
+}
+
 int	ft_putnbr(int nb)
 {
 	if (nb < 0)
@@ -25,5 +43,5 @@ int	ft_putnbr(int nb)
 	}
 	else
 		ft_putchar(nb + '0');
-	return (1);
+	return (ft_nbrsize(nb));
 }

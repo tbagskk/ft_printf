@@ -18,21 +18,23 @@ char	ft_symbol(va_list arg, const char *variable)
 	int	a;
 
 	a = 0;
-	if (*variable == 'd')
+	if (*variable == 'd' || *variable == 'i')
 		a += ft_putnbr(va_arg(arg, int));
 	else if (*variable == 's')
 		a += ft_putstr(va_arg(arg, char*));
 	else if (*variable == 'x')
-			a += ft_printhexa(va_arg(arg, unsigned int));
+			a += ft_printhexa(va_arg(arg, unsigned int), 'x');
+	else if (*variable == 'X')
+			a += ft_printhexa(va_arg(arg, unsigned int), 'X');
 	else if (*variable == 'c')
 		a += ft_putchar(va_arg(arg, int));
 	else if (*variable == 'p')
-		a += ft_p(va_arg(arg, int));
+		a += ft_p(va_arg(arg, unsigned long long));
 	else if (*variable == 'u')
 		a += ft_u(va_arg(arg, int));
 	else if (*variable == '%')
 		a += ft_putchar('%');
-	return (0);
+	return (a);
 }
 
 int	ft_printf(const char *variable, ...)
@@ -40,23 +42,30 @@ int	ft_printf(const char *variable, ...)
 	va_list	pam;
 	int		size;
 
+	if (!variable)
+		return (-1);
 	size = 0;
 	va_start(pam, variable);
 	while (*variable)
 	{
 		if (*variable == '%')
-			ft_symbol(pam, variable++ + 1);
+			size += ft_symbol(pam, variable++ + 1);
 		else
-			ft_putchar(*variable);
+			size += ft_putchar(*variable);
 		variable++;
 	}
 	va_end(pam);
-	return (0);
+	return (size);
 }
 
 int main(int ac, char **av)
 {
- 	unsigned int g = 45786780;
-	printf("gabin nique %d ta mere\n",g);
-	ft_printf("%",g);
+	int g = 5;
+	//int b = printf("%u\n",g);
+	
+	int a = ft_printf("%d\n", 0);
+	int b = printf("%d\n", 0);
+	printf("%d\n", a);
+	printf("%d\n", b);
 }
+
