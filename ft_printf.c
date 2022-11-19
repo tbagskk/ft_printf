@@ -13,13 +13,9 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-
-
 char	ft_symbol(va_list arg, const char *variable)
 {
-	int a; 
-	char *s;
-	unsigned int x;
+	int	a;
 
 	a = 0;
 	if (*variable == 'd')
@@ -34,6 +30,8 @@ char	ft_symbol(va_list arg, const char *variable)
 		a += ft_p(va_arg(arg, int));
 	else if (*variable == 'u')
 		a += ft_u(va_arg(arg, int));
+	else if (*variable == '%')
+		a += ft_putchar('%');
 	return (0);
 }
 
@@ -47,7 +45,7 @@ int	ft_printf(const char *variable, ...)
 	while (*variable)
 	{
 		if (*variable == '%')
-			 ft_symbol(pam, variable++ + 1);
+			ft_symbol(pam, variable++ + 1);
 		else
 			ft_putchar(*variable);
 		variable++;
@@ -59,6 +57,6 @@ int	ft_printf(const char *variable, ...)
 int main(int ac, char **av)
 {
  	unsigned int g = 45786780;
-	printf("gabin nique %u ta mere\n",g);
-	ft_printf("gabin nique %u ta mere",g);
+	printf("gabin nique %d ta mere\n",g);
+	ft_printf("%",g);
 }
