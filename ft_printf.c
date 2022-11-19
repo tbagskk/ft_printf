@@ -10,42 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
 
-void	ft_putchar(char c)
+
+
+char	ft_symbol(va_list arg, const char *variable)
 {
-	write(1, &c, 1);
-}
+	int a; 
+	char *s;
+	unsigned int x;
 
-
-void	ft_putnbr(int nb)
-{
-	if (nb < 0)
-	{
-		nb = -nb;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-		ft_putchar(nb + '0');
-}
-
-const	char	ft_symbol(va_list arg, const char *variable)
-{
-	int a;
-	
+	a = 0;
 	if (*variable == 'd')
 		a += ft_putnbr(va_arg(arg, int));
-
-
+	else if (*variable == 's')
+		a += ft_putstr(va_arg(arg, char*));
+	else if (*variable == 'x')
+			a += ft_printhexa(va_arg(arg, unsigned int));
+	else if (*variable == 'c')
+		a += ft_putchar(va_arg(arg, int));
+	else if (*variable == 'p')
+		a += ft_p(va_arg(arg, int));
+	else if (*variable == 'u')
+		a += ft_u(va_arg(arg, int));
 	return (0);
 }
-
 
 int	ft_printf(const char *variable, ...)
 {
@@ -57,18 +47,18 @@ int	ft_printf(const char *variable, ...)
 	while (*variable)
 	{
 		if (*variable == '%')
-		{
-			ft_symbol(pam, variable + 1);
-		}
+			 ft_symbol(pam, variable++ + 1);
+		else
+			ft_putchar(*variable);
 		variable++;
 	}
 	va_end(pam);
 	return (0);
 }
 
-int main()
+int main(int ac, char **av)
 {
-
-	char g = 'G';
-	ft_printf("%d",g);
+ 	unsigned int g = 45786780;
+	printf("gabin nique %u ta mere\n",g);
+	ft_printf("gabin nique %u ta mere",g);
 }
