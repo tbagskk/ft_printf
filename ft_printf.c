@@ -21,11 +21,11 @@ char	ft_symbol(va_list arg, const char *variable)
 	if (*variable == 'd' || *variable == 'i')
 		a += ft_putnbr(va_arg(arg, int));
 	else if (*variable == 's')
-		a += ft_putstr(va_arg(arg, char*));
+		a += ft_putstr(va_arg(arg, char *));
 	else if (*variable == 'x')
-			a += ft_printhexa(va_arg(arg, unsigned int), 'x');
+		a += ft_printhexa(va_arg(arg, unsigned int), 'x');
 	else if (*variable == 'X')
-			a += ft_printhexa(va_arg(arg, unsigned int), 'X');
+		a += ft_printhexa(va_arg(arg, unsigned int), 'X');
 	else if (*variable == 'c')
 		a += ft_putchar(va_arg(arg, int));
 	else if (*variable == 'p')
@@ -57,15 +57,18 @@ int	ft_printf(const char *variable, ...)
 	va_end(pam);
 	return (size);
 }
-
+/*
 int main(int ac, char **av)
 {
-	int g = 5;
-	//int b = printf("%u\n",g);
+	char *g = "caca";
 	
-	int a = ft_printf("%d\n", 0);
-	int b = printf("%d\n", 0);
-	printf("%d\n", a);
-	printf("%d\n", b);
+	int a = ft_printf(" %s %s %s %s %s", " - ", "", "4", "", g);
+	printf("\n");
+	int b = printf(" %s %s %s %s %s", " - ", "", "4", "", g);
+	printf("\n");
+	printf("%d", a);
+	printf("\n");
+	printf("%d", b);
+	printf("\n");
 }
-
+*/

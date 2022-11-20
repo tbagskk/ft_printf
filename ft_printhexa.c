@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_hexlen(unsigned int a)
 {
 	int	i ;
 
 	i = 0;
+	if (a == 0)
+		return (1);
 	while (a != 0)
 	{
 		i++;

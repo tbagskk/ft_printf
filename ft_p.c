@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_plen(unsigned long long x)
 {
@@ -33,11 +32,10 @@ int	ft_p(unsigned long long a)
 	int		size;
 
 	i = 0;
-	size = a;
 	if (a == 0)
 	{
 		write(1, "0x0", 3);
-		return (i);
+		return (3);
 	}
 	while (a)
 	{
@@ -46,9 +44,9 @@ int	ft_p(unsigned long long a)
 		i++;
 	}
 	write(1, "0x", 2);
+	size = i;
 	i--;
 	while (i + 1)
 		write(1, &tab[i--], 1);
-	i += ft_plen(size);
-	return (i);
+	return (size + 2);
 }

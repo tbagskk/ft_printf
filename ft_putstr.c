@@ -27,10 +27,18 @@ int	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if (str)
 	{
-		ft_putchar(str[i]);
-		i++;
+		while (str[i] != '\0')
+		{
+			ft_putchar(str[i]);
+			i++;
+		}
+	}
+	else
+	{
+		write (1, "(null)", 6);
+		return (6);
 	}
 	return (ft_strlen(str));
 }

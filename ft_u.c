@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_ulen(unsigned int x)
 {
 	int	i;
 
 	i = 0;
+	if (x == 0)
+		return (1);
 	while (x != 0)
 	{
 		i++;
@@ -35,6 +36,10 @@ int	ft_u(unsigned int a)
 
 	i = 0;
 	size = a;
+	if (a == 0)
+	{
+		ft_putchar(a + '0');
+	}
 	while (a)
 	{
 		tab[i] = ('0' + a % 10);
