@@ -25,7 +25,7 @@ int	ft_plen(unsigned long long x)
 	return (i);
 }
 
-int	ft_p(unsigned long long a)
+int	ft_p(unsigned long long a, int *err)
 {
 	int		i;
 	char	tab[16];
@@ -34,7 +34,7 @@ int	ft_p(unsigned long long a)
 	i = 0;
 	if (a == 0)
 	{
-		write(1, "0x0", 3);
+		ft_putstr("0x0", err);
 		return (3);
 	}
 	while (a)
@@ -43,10 +43,10 @@ int	ft_p(unsigned long long a)
 		a = a / 16;
 		i++;
 	}
-	write(1, "0x", 2);
+	ft_putstr("0x", err);
 	size = i;
 	i--;
 	while (i + 1)
-		write(1, &tab[i--], 1);
+		ft_putchaar(tab[i--], err);
 	return (size + 2);
 }

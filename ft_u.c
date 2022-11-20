@@ -27,7 +27,7 @@ int	ft_ulen(unsigned int x)
 	return (i);
 }
 
-int	ft_u(unsigned int a)
+int	ft_u(unsigned int a, int *err)
 {
 	unsigned long	b;
 	int				i;
@@ -38,7 +38,7 @@ int	ft_u(unsigned int a)
 	size = a;
 	if (a == 0)
 	{
-		ft_putchar(a + '0');
+		ft_putchaar(a + '0', err);
 	}
 	while (a)
 	{
@@ -49,7 +49,7 @@ int	ft_u(unsigned int a)
 	while (i)
 	{
 		i--;
-		ft_putchar(tab[i]);
+		ft_putchaar(tab[i], err);
 	}
 	return (ft_ulen(size));
 }

@@ -27,7 +27,7 @@ int	ft_hexlen(unsigned int a)
 	return (i);
 }
 
-int	ft_printhexa(unsigned int a, char b)
+int	ft_printhexa(unsigned int a, char b, int *err)
 {
 	char	*hexa;
 	int		tab[100];
@@ -49,7 +49,7 @@ int	ft_printhexa(unsigned int a, char b)
 	tab[i] = hexa[a];
 	while (i >= 0)
 	{
-		ft_putchar(tab[i]);
+		ft_putchaar(tab[i], err);
 		i--;
 	}
 	return (ft_hexlen(size));

@@ -18,12 +18,13 @@
 # include <stdlib.h>
 
 int		ft_printf(const char *placeholder, ...);
-int		ft_printhexa(unsigned int a, char b);
-char	ft_symbol(va_list arg, const char *variable);
+int		ft_printhexa(unsigned int a, char b, int *err);
+int		ft_symbol(va_list arg, const char *variable, int *err);
 int		ft_putchar(char c);
-int		ft_putnbr(int nb);
-int		ft_putstr(char *str);
-int		ft_p(unsigned long long a);
-int		ft_u(unsigned int a);
+int		ft_putnbr(int nb, int *err);
+int		ft_putstr(char *str, int *err);
+int		ft_p(unsigned long long a, int *err);
+int		ft_u(unsigned int a, int *err);
+int		ft_putchaar(char str, int *err);
 
 #endif

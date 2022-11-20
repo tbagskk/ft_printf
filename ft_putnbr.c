@@ -32,26 +32,27 @@ int	ft_nbrsize(int a)
 	return (i);
 }
 
-int	ft_putnbr(int nb)
+int	ft_putnbr(int nb, int *err)
 {
 	if (nb == -2147483648)
 	{
-		write(1, &"-2", 2);
-		ft_putnbr(147483648);
+		ft_putchaar('-', err);
+		ft_putchaar('2', err);
+		ft_putnbr(147483648, err);
 	}
 	else if (nb < 0)
 	{
-		ft_putchar('-');
-		ft_putnbr(-nb);
+		ft_putchaar('-', err);
+		ft_putnbr(-nb, err);
 	}
 	else if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putnbr(nb / 10, err);
+		ft_putnbr(nb % 10, err);
 	}
 	else
 	{
-		ft_putchar(nb + '0');
+		ft_putchaar(nb + '0', err);
 	}
 	return (ft_nbrsize(nb));
 }

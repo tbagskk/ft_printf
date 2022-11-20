@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -22,7 +23,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_putstr(char *str)
+int	ft_putstr(char *str, int *err)
 {
 	int	i;
 
@@ -31,13 +32,13 @@ int	ft_putstr(char *str)
 	{
 		while (str[i] != '\0')
 		{
-			ft_putchar(str[i]);
+			ft_putchaar(str[i], err);
 			i++;
 		}
 	}
 	else
 	{
-		write (1, "(null)", 6);
+		*err = write (1, "(null)", 6);
 		return (6);
 	}
 	return (ft_strlen(str));
