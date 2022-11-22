@@ -3,12 +3,12 @@ NAME	= libftprintf.a
 SRCS	= ${wildcard *.c}
 OBJS	= ${SRCS:.c=.o}
 CC		= gcc
-
+CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -rf
 HEADER	= ft_printf.h
 
 ${NAME}:	${OBJS}
-			${CC}  -c ${SRCS}
+			${CC} ${CFLAGS} -c ${SRCS}
 			ar rc ${NAME} ${OBJS} ${HEADER}
 
 all:		${NAME}

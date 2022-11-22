@@ -29,7 +29,6 @@ int	ft_ulen(unsigned int x)
 
 int	ft_u(unsigned int a, int *err)
 {
-	unsigned long	b;
 	int				i;
 	char			tab[12];
 	int				size;
